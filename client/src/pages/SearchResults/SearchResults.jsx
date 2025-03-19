@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { useLocation, Link } from "react-router";
+import { useLocation } from "react-router";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 function SearchResults() {
   const location = useLocation();
@@ -17,33 +18,33 @@ function SearchResults() {
     }
   }, [query]);
 
+  const regex = new RegExp(`\\b${query.toLowerCase()}\\b`, "i");
+
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(query.toLowerCase()) ||
-    product.description.toLowerCase().includes(query.toLowerCase())
+    regex.test(product.name.toLowerCase()) ||
+    regex.test(product.description.toLowerCase()) ||
+    regex.test(product.brand.toLowerCase()) ||
+    regex.test(product.type.toLowerCase())
   );
 
   return (
     <>
       <Header/>
       <h1 className="text-center text-xl sm:text-lg m-2 p-2">Sökresultat för: {query}</h1>
-      <div className="text-center text-lg m-2 p-2">
-        {filteredProducts.length} resultat{filteredProducts.length !== 1 ? ' hittades' : ' hittades'}
-      </div>
-      <div className="p-4">
-        {filteredProducts.length > 0 ? (
-          <ul>
+      {filteredProducts.length > 0 ? (
+        <>
+          <div className="text-center text-lg m-2 p-2">
+            Hittade {filteredProducts.length} {filteredProducts.length !== 1 ? 'produkter' : 'produkt'}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {filteredProducts.map((product) => (
-              <li key={product.id} className="border-b border-gray-200 p-2">
-                <Link to={`/products/${product.slug}`} className="hover:underline"><h2 className="text-lg">{product.name}</h2></Link>
-                <p>{product.description}</p>
-                <p>Price: ${product.price}</p>
-              </li>
+              <ProductCard key={product.id} product={product} />
             ))}
-          </ul>
-        ) : (
-          <p>Inga produkter hittades</p>
-        )}
-      </div>   
+          </div>
+        </>
+      ) : (
+        <div className="text-center text-lg m-2 p-2">Inga produkter hittades</div>
+      )}
       <Footer/>
     </>
   );

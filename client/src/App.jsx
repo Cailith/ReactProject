@@ -1,4 +1,4 @@
-import {  Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import Admin from "./pages/Admin/Admin";
 import Home from "./pages/Home/Home";
 import NewProduct from "./pages/NewProduct/NewProduct";
@@ -11,10 +11,10 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/admin/products" element={<Admin />} />
-        <Route path="/admin/product/new" element={<NewProduct />} />
+        <Route path="/admin/products/new" element={<NewProduct />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/products/:slug" element={<ProductDetails />} />
-      </Routes>
+    </Routes>
   );
 }
 

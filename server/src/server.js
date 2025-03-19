@@ -32,8 +32,6 @@ app.post("/api/products", (req, res) => {
 });
 
 
-// TIPS: Använd VS Code-tillägget Thunder Client för att bygga ut och testa web API:et
-
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
 });

@@ -10,11 +10,11 @@ const handleSearchSubmit = (e) => {
 };
 
     return (
-      <header className="flex flex-col items-center m-2 w-full">
+      <header className="flex flex-col items-center m-2">
         <div className="flex justify-between items-center w-full flex-col sm:flex-row">
           <div>
             <Link to={"/"}>
-              <img src="https://placehold.co/600x400" alt="" className="w-full" />
+              <img src="https://placehold.co/600x400" alt="" className="w-full rounded-2xl" />
             </Link>
           </div>
           <div className="flex items-center w-full flex-row m-2 p-2 justify-between flex-wrap">

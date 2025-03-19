@@ -95,7 +95,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div>
+      <div className="w-full max-w-screen">
         <p className="text-center p-4 sm:bg-gray-200 border-b-2 border-gray-300">
           &copy; FreakyFashion
         </p>
