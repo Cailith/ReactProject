@@ -10,13 +10,13 @@ const app = express();
 app.use(express.json());
 
 app.get("/api/products", (req, res) => {
-  const products = db.prepare("SELECT name, brand, description, image, price, type, sku, slug FROM products").all();
+  const products = db.prepare("SELECT id, name, brand, description, image, price, type, sku, slug FROM products").all();
   res.json(products);
 });
 
 app.get("/api/products/:slug", (req, res) => {
   const { slug } = req.params;
-  const product = db.prepare("SELECT name, brand, description, image, price, type, sku, slug FROM products WHERE slug = ?").get(slug);
+  const product = db.prepare("SELECT id, name, brand, description, image, price, type, sku, slug FROM products WHERE slug = ?").get(slug);
   if (product) {
     res.json(product);
   } else {
@@ -26,7 +26,7 @@ app.get("/api/products/:slug", (req, res) => {
 
 app.post("/api/products", (req, res) => {
   const { name, brand, description, image, price, type, sku, slug } = req.body;
-  const insert = db.prepare("INSERT INTO products (name, brand, description, image, price, type, sku, slug) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+  const insert = db.prepare("INSERT INTO products (id, name, brand, description, image, price, type, sku, slug) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
   const result = insert.run(name, brand, description, image, price, type, sku, slug);
   res.json(result);
 });

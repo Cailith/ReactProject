@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import PropTypes from 'prop-types';
 
-function ProductCard({ product }) {
+function ProductCard({product}) {
   return (
     <Link to={`/products/${product.slug}`} className="block">
     <div className="m-2 group hover:bg-gray-50 rounded-2xl">
