@@ -26,7 +26,7 @@ app.get("/api/products/:slug", (req, res) => {
 
 app.post("/api/products", (req, res) => {
   const { name, brand, description, image, price, type, sku, slug } = req.body;
-  const insert = db.prepare("INSERT INTO products (id, name, brand, description, image, price, type, sku, slug) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  const insert = db.prepare("INSERT INTO products (name, brand, description, image, price, type, sku, slug) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
   const result = insert.run(name, brand, description, image, price, type, sku, slug);
   res.json(result);
 });

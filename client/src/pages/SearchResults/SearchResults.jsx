@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "../../components/Layouts/Footer/Footer";
+import Header from "../../components/Layouts/Header/Header";
 import { useLocation } from "react-router";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../components/Layouts/ProductCard/ProductCard";
+import Grid from "../../components/Base/Grid/Grid";
 
 function SearchResults() {
   const location = useLocation();
@@ -29,23 +30,23 @@ function SearchResults() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <h1 className="text-center text-xl sm:text-lg m-2 p-2">Sökresultat för: {query}</h1>
       {filteredProducts.length > 0 ? (
         <>
           <div className="text-center text-lg m-2 p-2">
             Hittade {filteredProducts.length} {filteredProducts.length !== 1 ? 'produkter' : 'produkt'}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          <Grid>
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product}/>
+              <ProductCard key={product.id} product={product} showFavorite={true} />
             ))}
-          </div>
+          </Grid>
         </>
       ) : (
         <div className="text-center text-lg m-2 p-2">Inga produkter hittades</div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }
