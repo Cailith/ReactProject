@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Header from "../../components/Layouts/Header/Header";
 import Footer from "../../components/Layouts/Footer/Footer";
 import Hero from "../../components/Layouts/Hero/Hero";
@@ -22,12 +22,14 @@ function Home() {
       });
   }, []);
 
+  const slicedProducts = useMemo(() => products.slice(0, 8), [products]);
+
   return (
     <>
       <Header />
       <Hero />
       <Grid>
-        {products.slice(0, 8).map((product) => (
+        {slicedProducts.map((product) => (
           <ProductCard key={product.id} product={product} showFavorite={true} />
         ))}
       </Grid>

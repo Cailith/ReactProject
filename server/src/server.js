@@ -31,6 +31,16 @@ app.post("/api/products", (req, res) => {
   res.json(result);
 });
 
+app.delete("/api/products/:id", (req, res) => {
+  const { id } = req.params;
+  const deleteStmt = db.prepare("DELETE FROM products WHERE id = ?");
+  const result = deleteStmt.run(id);
+  if (result.changes > 0) {
+    res.status(204).end();
+  } else {
+    res.status(404).json({ error: "Product not found" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

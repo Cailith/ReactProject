@@ -1,6 +1,6 @@
 import FeatureCard from '../../Base/FeatureCard/FeatureCard';
 import AccordionSection from '../../Base/AccordionSection/AccordionSection';
-import NavLink from '../../Base/NavLink/NavLink';
+import SearchLink from '../../Base/SearchLink/SearchLink';
 import { Link } from 'react-router';
 
 const Footer = () => {
@@ -72,7 +72,7 @@ const Footer = () => {
               {section.links.map((link, linkIndex) => (
                 <li key={linkIndex}>
                   {section.title === "Shopping" ? (
-                    <NavLink to={link.to} label={link.label} />
+                    <SearchLink to={link.to} label={link.label} />
                   ) : (
                     <Link to={link.to} className="hover:underline">
                       {link.label}

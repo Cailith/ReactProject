@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import NavLink from '../NavLink/NavLink';
+import SearchLink from '../SearchLink/SearchLink';
 
 const AccordionSection = ({ title, links }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ const AccordionSection = ({ title, links }) => {
             {links.map((link, index) => (
               <li key={index}>
                 {title === "Shopping" ? (
-                  <NavLink to={link.to} label={link.label} className="text-lg" />
+                  <SearchLink to={link.to} label={link.label} className="text-lg" />
                 ) : (
                   <Link to={link.to} className="hover:underline text-lg">
                     {link.label}

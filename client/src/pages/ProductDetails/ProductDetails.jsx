@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import Header from "../../components/Layouts/Header/Header";
 import Footer from "../../components/Layouts/Footer/Footer";
 import ProductCard from "../../components/Layouts/ProductCard/ProductCard";
+import StyledButton from "../../components/Base/StyledButton/StyledButton";
 
 function ProductDetails() {
 
@@ -10,10 +11,6 @@ function ProductDetails() {
 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const handleButtonClick = (e) => {
-    e.preventDefault();
-    console.log("Button clicked");
-  };
 
   useEffect(() => {
     async function fetchProduct() {
@@ -72,7 +69,7 @@ function ProductDetails() {
           <p className="mb-2"><strong>Märke:</strong> {product.brand}</p>
           <p className="mb-2"><strong>Beskrivning:</strong> {product.description}</p>
           <p className="mb-2"><strong>Pris:</strong> {product.price}</p>
-          <button onClick={handleButtonClick} className="border rounded-xl p-2 text-center max-w-auto sm:max-w-1/2 my-4 hover:underline hover:bg-gray-50 hover:cursor-pointer">Lägg i Varukorg</button>
+          <StyledButton buttonText="Lägg i varukorg" buttonEffect="addToCart" />
         </div>
       </div>
       <h2 className="m-2 mt-6 text-2xl text-center">Liknande produkter</h2>

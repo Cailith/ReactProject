@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 
 
-const Icon = ({ path, to }) => {
+const IconLink = ({ pathData, to }) => {
     return (
         <Link to={to}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-9 sm:size-7 transition-transform transform hover:scale-110">
-                <path d={path} />
+                <path d={pathData} />
             </svg>
         </Link>
     );
 };
 
-Icon.propTypes = {
-    path: PropTypes.string.isRequired,
+IconLink.propTypes = {
+    pathData: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
 };
 
-export default Icon;
+export default IconLink;
