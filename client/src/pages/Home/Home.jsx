@@ -31,8 +31,8 @@ function Home() {
       <Hero />
       <div className="hidden lg:flex justify-evenly w-full">
         <Banner slug="classic-crewneck-tshirt" className="h-90 w-full" />
-        <Banner slug="classic-crewneck-tshirt" className="h-90 w-full"/>
-        <Banner slug="classic-crewneck-tshirt" className="h-90 w-full"/>
+        <Banner slug="slim-fit-denim-jeans" className="h-90 w-full"/>
+        <Banner slug="hooded-zip-up-sweatshirt" className="h-90 w-full"/>
       </div>
       <Grid>
         {slicedProducts.map((product) => (
