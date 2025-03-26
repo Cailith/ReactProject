@@ -4,6 +4,7 @@ import Footer from "../../components/Layouts/Footer/Footer";
 import Hero from "../../components/Layouts/Hero/Hero";
 import ProductCard from "../../components/Layouts/ProductCard/ProductCard";
 import Grid from "../../components/Base/Grid/Grid";
+import Banner from "../../components/Layouts/Banner/Banner";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -28,6 +29,11 @@ function Home() {
     <>
       <Header />
       <Hero />
+      <div className="hidden lg:flex justify-evenly w-full">
+        <Banner slug="classic-crewneck-tshirt" className="h-90 w-full" />
+        <Banner slug="classic-crewneck-tshirt" className="h-90 w-full"/>
+        <Banner slug="classic-crewneck-tshirt" className="h-90 w-full"/>
+      </div>
       <Grid>
         {slicedProducts.map((product) => (
           <ProductCard key={product.id} product={product} showFavorite={true} />

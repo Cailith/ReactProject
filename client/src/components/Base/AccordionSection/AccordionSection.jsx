@@ -13,7 +13,7 @@ const AccordionSection = ({ title, links }) => {
   return (
     <div className="border-b border-gray-200">
       <button
-        className={`w-full text-left p-4 focus:outline-none ${isOpen ? 'bg-gray-200' : ''}`}
+        className={`w-full text-left p-4 focus:outline-none hover:bg-gray-100 hover:cursor-pointer ${isOpen ? 'bg-gray-200' : ''}`}
         onClick={toggleAccordion}
       >
         <h2 className="text-xl">{title}</h2>

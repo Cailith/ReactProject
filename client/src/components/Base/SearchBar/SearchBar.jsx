@@ -10,7 +10,7 @@ const handleSearchSubmit = (e) => {
 };
     return (
         <form className="border-2 border-black rounded-full p-2 flex items-center" onSubmit={handleSearchSubmit}>
-        <input type="text" placeholder="Sök produkt" className="outline-none" onChange={e => setQuery(e.target.value)} />
+        <input type="text" placeholder="Sök produkt" className="outline-none" onChange={e => setQuery(e.target.value)} required/>
         <button type="submit" aria-label="Search" className="hover:cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
             <path

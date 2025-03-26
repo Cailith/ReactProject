@@ -1,10 +1,30 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import CustomSVG from "../../CustomSVG/CustomSVG";
+import CustomSVG from "../CustomSVG/CustomSVG";
 
-const ConfirmationButton = ({ svgClassName, svgPath, size = 1, onConfirm, className }) => {
+const ConfirmationButton = ({ svgPath, onConfirm, className }) => {
   const [clicked, setClicked] = useState(false);
   const containerRef = useRef(null);
+
+  const extractSizeFromClassName = () => {
+    // Check for size-* classes first (e.g., size-6 → 1.5rem)
+    const sizeUtilityMatch = className.match(/size-(\d+)/);
+    if (sizeUtilityMatch) {
+      return parseInt(sizeUtilityMatch[1], 10) / 4; // Convert to rem (size-6 → 6/4 = 1.5rem)
+    }
+  
+    // Fall back to w-* or h-* classes
+    const sizeClasses = className.match(/(w|h)-(\d+)/g) || [];
+    if (sizeClasses.length > 0) {
+      const sizeClass = sizeClasses[0];
+      const sizeValue = parseInt(sizeClass.split('-')[1], 10);
+      return sizeValue / 4; // Convert Tailwind size to rem (since 1 = 0.25rem)
+    }
+  
+    return 1; // Default size if none found
+  };
+  
+    const size = extractSizeFromClassName();
 
   // Handle clicks outside
   useEffect(() => {
@@ -38,8 +58,8 @@ const ConfirmationButton = ({ svgClassName, svgPath, size = 1, onConfirm, classN
         onClick={!clicked ? () => setClicked(true) : () => setClicked(false)}
         className={`${iconButtonClasses} ${
           clicked 
-            ? "bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600"
-            : "bg-gray-100 hover:bg-gray-200"
+            ? "bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 transition duration-300 ease-in-out transform hover:scale-105"
+            : "bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out transform hover:scale-105"
         }`}
         style={{
           width: buttonSize,
@@ -50,8 +70,7 @@ const ConfirmationButton = ({ svgClassName, svgPath, size = 1, onConfirm, classN
         aria-label={!clicked ? "Open confirmation" : "Cancel"}
       >
         <CustomSVG
-          svgClassName={svgClassName}
-          size={size}
+          svgClassName={className}
           pathData={
             !clicked 
               ? svgPath 
@@ -65,7 +84,7 @@ const ConfirmationButton = ({ svgClassName, svgPath, size = 1, onConfirm, classN
           setClicked(false);
           onConfirm();
         }}
-        className={`${iconButtonClasses} bg-gray-100 hover:bg-green-200 text-green-500 hover:text-green-600 ${
+        className={`${iconButtonClasses} bg-green-100 hover:bg-green-200 text-green-500 hover:text-green-600 transition duration-300 ease-in-out transform hover:scale-105 ${
           clicked
             ? "opacity-100 translate-x-0 scale-100"
             : "opacity-0 translate-x-[-10px] scale-90 pointer-events-none"
@@ -80,11 +99,11 @@ const ConfirmationButton = ({ svgClassName, svgPath, size = 1, onConfirm, classN
         aria-label="Confirm"
       >
         <CustomSVG
-          svgClassName="currentColor"
-          size={size}
+          svgClassName={className}
           pathData="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm5.707,8.707-7,7a1,1,0,0,1-1.414,0l-3-3a1,1,0,0,1,1.414-1.414L10,14.586l6.293-6.293a1,1,0,0,1,1.414,1.414Z"
         />
       </button>
+
     </div>
   );
 };

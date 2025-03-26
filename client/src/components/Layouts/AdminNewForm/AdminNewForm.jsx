@@ -15,7 +15,6 @@ const AdminNewForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // formRef.current.slug.value = slug;
         const formData = new FormData(formRef.current);
 
         const data = {
@@ -93,7 +92,7 @@ const AdminNewForm = () => {
                         name="type"
                         id="type"
                         required
-                        className="p-2 border rounded"
+                        className="p-2 border rounded hover:cursor-pointer"
                     >
                         <option value="">Välj typ</option>
                         <option value="T-shirt">T-shirt</option>

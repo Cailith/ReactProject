@@ -38,7 +38,7 @@ const Hero = () => {
     <Link to={`/products/${product.slug}`} className="flex flex-col items-center text-center lg:flex-row-reverse p-4 group">
       <img src={product.image} alt={product.name} className="w-full lg:max-w-1/2 h-auto rounded-2xl" />
       <div className="p-4 flex-1 flex flex-col">
-        <h1 className="text-2xl font-bold group-hover:underline">{product.name}</h1>
+        <h1 className="text-2xl font-bold group-hover:underline transition duration-300 ease-in-out transform group-hover:sm:scale-102">{product.name}</h1>
         <p className="mt-2 text-lg">{product.description}</p>
       </div>
     </Link>

@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 
-const CustomSVG = ({ size, fillColor = "currentColor", pathData, viewBox = "0 0 24 24", svgClassName = "" }) => {
-  const sizeClass = size ? `size-${size}` : "";
+const CustomSVG = ({ fillColor = "currentColor", pathData, viewBox = "0 0 24 24", svgClassName = "" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      className={`${sizeClass} ${svgClassName}`}
+      className={svgClassName}
     >
       <path fill={fillColor} d={pathData} />
     </svg>
